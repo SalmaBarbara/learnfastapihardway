@@ -9,3 +9,11 @@ def create_new_blog(blog: CreateBlog, db: Session, author_id:int = 1):
     db.commit()
     db.refresh(blog)
     return blog
+
+def retreive_blog(id: int, db: Session):
+    blog=db.query(Blog).filter(Blog.id ==id).first()
+    return blog
+
+def list_blogs (db:Session):
+    blogs=db.query(Blog).filter(Blog.is_active).all()
+    return blogs
